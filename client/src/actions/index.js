@@ -14,7 +14,7 @@ export const fetchSmurfs = () => (dispatch) => {
     axios.get('http://localhost:3333/smurfs')
         .then(({data}) => {
             dispatch({ type: FETCHING_SMURFS_SUCCESS, payload: data})
-            console.log(data)
+            // console.log(data)
         })
         .catch(err => {
             dispatch({type: FETCHING_SMURFS_ERROR, payload: err})
@@ -25,13 +25,11 @@ export const fetchSmurfs = () => (dispatch) => {
 
 export const addSmurf = (newSmurf) => (dispatch) => {
     
-    if(newSmurf.name === '' || newSmurf.nickname === '' || newSmurf.position === '' ){
-        dispatch({type: ADD_SMURF_ERROR})
-    }
     
     axios.post('http://localhost:3333/smurfs', newSmurf)
-        .then(res => {
-            console.log(res)
+        .then(({data}) => {
+            dispatch({ type: ADD_SMURF, payload: data})
+            console.log(data)
         })
         .catch(err => {
             console.log(err)
