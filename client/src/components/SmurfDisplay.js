@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { fetchSmurfs } from "../actions";
+import Smurf from './Smurf'
 
 // export class SmurfDisplay extends React.Component {
 //     render() {
@@ -23,7 +24,11 @@ export const SmurfDisplay = ({ smurfs, isFetching, error, fetchSmurfs }) => {
     else {
         return (
             <div>
-                {smurfs.map(smurf => <h1>{smurf.name}</h1>)}
+                {smurfs.map(smurf => 
+                    <Smurf
+                        smurf={{...smurf}}
+                    />
+                )}
             </div>
         )
     }
