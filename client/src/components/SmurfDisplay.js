@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from "react-redux";
+import { fetchSmurfs } from "../actions";
+import Smurf from './Smurf'
 
 export class SmurfDisplay extends React.Component {
+
+    componentDidMount() {
+        this.props.fetchSmurfs()
+    }
+
     render() {
-        return(<div>
-            
-        </div>)
+
+        if(this.props.isFetching === true){
+            return (<h2>Loading...</h2>)
+        } else {
+            return (
+                <div>
+                {this.props.smurfs.map(smurf => <Smurf
+                    smurf={{...smurf}} />)
+                }
+                </div>
+            )
+        }
     }
 }
-
-export default SmurfDisplay;
 
 //Task List:
 //1. Import in all needed components and library methods.
@@ -16,3 +31,14 @@ export default SmurfDisplay;
 //3. Fetch all smurfs when the component first mounts.
 //4. Render loading text or graphic if the application is currently loading.
 //5. Render a list of all Smurfs using the Smurf component if the application is not currently loading.
+
+
+const mapStateToProps = (state) => {
+    return {
+        smurfs: state.smurfs,
+    }
+  }
+  
+  const mapDispatchToProps = { fetchSmurfs };
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(SmurfDisplay);
