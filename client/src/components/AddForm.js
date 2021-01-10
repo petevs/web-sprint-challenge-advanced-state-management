@@ -37,16 +37,16 @@ class AddForm extends React.Component {
             <form onSubmit={this.submitSmurf}>
                 <div className="form-group">
                     <label htmlFor="name">Name:</label><br/>
-                    <input onChange={this.handleChange} name="name" id="name" />
+                    <input onChange={this.handleChange} name="name" id="name" value={this.state.name}/>
 
                     <label htmlFor="position">Position:</label><br/>
-                    <input onChange={this.handleChange} name="position" id="position" />
+                    <input onChange={this.handleChange} name="position" id="position" value={this.state.position}/>
 
                     <label htmlFor="nickname">Nickname:</label><br/>
-                    <input onChange={this.handleChange} name="nickname" id="nickname" />
+                    <input onChange={this.handleChange} name="nickname" id="nickname" value={this.state.nickname}/>
 
                     <label htmlFor="description">Description:</label><br/>
-                    <input onChange={this.handleChange} name="description" id="description" />
+                    <input onChange={this.handleChange} name="description" id="description" value={this.state.description}/>
                 </div>
                 {this.props.error !== '' &&
                         <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {this.props.error}</div>

@@ -30,7 +30,8 @@ export const reducer = (state = initialState, action)=>{
             console.log(action.payload)
             return {
                 ...state,
-                smurfs: action.payload
+                smurfs: action.payload,
+                error: ''
             }
         case ADD_SMURF_ERROR:
             return {
