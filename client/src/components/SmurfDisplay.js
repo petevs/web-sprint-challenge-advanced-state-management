@@ -3,37 +3,26 @@ import { connect } from "react-redux";
 import { fetchSmurfs } from "../actions";
 import Smurf from './Smurf'
 
-// export class SmurfDisplay extends React.Component {
-//     render() {
-//         return(<div>
-//             <h1>Hi there</h1>
-//         </div>)
-//     }
-// }
+export class SmurfDisplay extends React.Component {
 
-export const SmurfDisplay = ({ smurfs, isFetching, error, fetchSmurfs }) => {
-
-    useEffect(() => {
-        fetchSmurfs()
-    },[fetchSmurfs])
-
-    if(isFetching === true) {
-        return (<h2>Loading...</h2>)
-    } 
-
-    else {
-        return (
-            <div>
-                {smurfs.map(smurf => 
-                    <Smurf
-                        smurf={{...smurf}}
-                    />
-                )}
-            </div>
-        )
+    componentDidMount() {
+        this.props.fetchSmurfs()
     }
 
-    
+    render() {
+
+        if(this.props.isFetching === true){
+            return (<h2>Loading...</h2>)
+        } else {
+            return (
+                <div>
+                {this.props.smurfs.map(smurf => <Smurf
+                    smurf={{...smurf}} />)
+                }
+                </div>
+            )
+        }
+    }
 }
 
 //Task List:
@@ -47,8 +36,6 @@ export const SmurfDisplay = ({ smurfs, isFetching, error, fetchSmurfs }) => {
 const mapStateToProps = (state) => {
     return {
         smurfs: state.smurfs,
-        isFetching: state.isFetching,
-        error: state.error
     }
   }
   
